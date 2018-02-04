@@ -1,0 +1,38 @@
+<apex:component >
+  <apex:attribute type="Tweet" name="singleTweet" description="Tweet passed into the controller"/>
+	  <ul class="slds-feed__list">
+	    <li class="slds-feed__item slds-box">
+	      <article class="slds-post">
+	        <header class="slds-post__header slds-media">
+	          <div class="slds-media__figure">
+	            <div class="slds-avatar slds-avatar_circle slds-avatar_large">
+	              <img alt="Twitter Profile Picture" src="{!singleTweet.profileImageUrl}" title="{!singleTweet.userName} avatar" />
+	            </div>
+	          </div>
+	          <div>
+	            <div class="slds-grid slds-grid_align-spread slds-has-flexi-truncate">
+	              <p>{!singleTweet.userName} - {!singleTweet.screenName} </p>
+	            </div>
+	            <p class="slds-text-body_small"><div>{!singleTweet.tweetDate}</div></p>
+	          </div>
+	        </header>
+	        <div class="slds-post__content slds-text-longform">
+	          <p>{!singleTweet.tweetContent}</p>
+	          <div class="slds-grid slds-wrap">
+		          <!-- Loop over attached -->
+		          <apex:repeat value="{!singleTweet.photoList}" var="tweetPhoto"> 
+				  <div class="slds-col slds-size_6-of-12">
+				    <img src="{!tweetPhoto}"></img>
+				  </div>
+			      </apex:repeat>
+			  </div>
+	        </div>
+	        <footer class="slds-post__footer">
+	          <ul class="slds-post__footer-meta-list slds-text-title">
+	            <li class="slds-item">{!singleTweet.retweetCount} Retweets</li>
+	          </ul>
+	        </footer>
+	      </article>
+	    </li>
+	   </ul>
+</apex:component>

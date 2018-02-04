@@ -1,0 +1,30 @@
+<apex:page controller="TwitterViewController" showHeader="flase" docType="html-5.0" sidebar="false">
+	<head>
+		<meta charset="utf-8"></meta>
+		<title>Salesforce Twitter Challenge</title>
+		<apex:slds />
+	</head>
+	<div class="slds-scope">
+	    <div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert" style="display:{!errorStyle}">
+		    <h2>{!errorMessage}</h2>
+	    </div>
+	    <div class="slds-feed">
+		   	<div class="slds-page-header">
+			  <div class="slds-media">
+			    <div class="slds-media__body">
+			      <h1 class="slds-page-header__title slds-truncate slds-align-middle">Salesforce Twitter Challenge</h1>
+			    </div>
+			  </div>
+			</div>
+			<apex:repeat value="{!tweetList}" var="tweet">
+				<c:TweetViewCmp singleTweet="{!tweet}"/> 
+			</apex:repeat> <!-- End Main Tweet Loop -->
+		</div>
+	</div>
+	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript">
+		// Refresh the page every minute
+	  	var refresh = setTimeout("location.reload(true);",60000);
+	  	console.log($);
+	</script>
+</apex:page>
