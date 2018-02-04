@@ -16,18 +16,6 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
     private HttpRequest req; 
 
     public TwitterAPIRequest() {
-        // Set the consumer secret and key from custom settings
-        twitterOauth__c myAuth = twitterOauth__c.getInstance();
-
-        if(Test.isRunningTest()) {
-            consumerKey = 'testKey';
-            consumerSecret = 'testSecret';
-        } else {
-            consumerKey = myAuth.ConsumerKey__c;
-            consumerSecret = myAuth.ConsumerSecret__c;
-        }
-       
-
         // Set up authorization header and request
         req = new HttpRequest();
 
@@ -93,8 +81,21 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
     /* stack overflow post helped guide me in the right direction after trying more difficult oauth 1.0 calculations
     /* as well as official docs https://developer.twitter.com/en/docs/basics/authentication/api-reference/token */
     public String getBearerAccessToken() {
-        // Encode the consumer key and secret
         twitterOauth__c myAuth = twitterOauth__c.getInstance();
+
+        if(Test.isRunningTest()) {
+            consumerKey = 'testKey';
+            consumerSecret = 'testSecret';
+        } else {
+            if(myAuth != null && myAuth.ConsumerKey__c != null && myAuth.ConsumerSecret__c != null) {
+                consumerKey = myAuth.ConsumerKey__c;
+                consumerSecret = myAuth.ConsumerSecret__c;
+            } else {
+                consumerKey = '';
+                consumerSecret = '';
+                System.debug('You must set the consumer key and consumer secret in custom settings for Twitter Oauth');
+            }
+        }
 
         String consumerKeyEncoded = EncodingUtil.urlEncode(consumerKey, 'UTF-8');
         String consumerSecretEncoded = EncodingUtil.urlEncode(consumerSecret, 'UTF-8');
