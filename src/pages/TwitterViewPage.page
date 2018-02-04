@@ -48,6 +48,9 @@
 		});
 
 		// Refresh the page every minute as well to get constant updates
-	  	var refresh = setTimeout("location.reload(true);console.log('refreshing');",60000);
+	  	setTimeout(function () {
+		    location.reload(true);
+		    console.log('refreshing');
+		}, 60000);
 	</script>
 </apex:page>
