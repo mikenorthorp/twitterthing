@@ -29,9 +29,9 @@ The view is styled using lightning design systems to make it look fancy. It disp
 Front end was built on Visualforce instead of lightning just due to personal preference, but should be able to be ported to lightning fairly easily. Although the app will currently work in both lightning and classic on the Salesforce platform.
 
 # Setup
-1. If not logging directly into existing orginization, install unmanaged package provided here
+1. If not logging directly into existing orginization, install unmanaged package provided [unmanaged package](https://login.salesforce.com/packaging/installPackage.apexp?p0=04t1N0000028mVX)
 2. IMPORTANT Ensure custom settings for Consumer Key and Consumer Secret are set up properly in the orginization (taken from Twitter generated App)
-3. App is viewable at https://server.com/apex/TwitterViewPage or going to the Salesforce Twitter Feed Tab (may be in + tabs)
+3. App is viewable at yoursalesforcedomain.com/apex/TwitterViewPage or going to the Salesforce Twitter Feed Tab (may be in + tabs)
 
 # Code Structure
 
