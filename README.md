@@ -11,6 +11,7 @@ It includes images if applicable with tweets. Various information is displayed f
 * User Profile Image
 * Date of Tweet (MMM DD YYYY)
 * Tweet Contents (Including images and Retweet text if retweet)
+* Number of Retweets
 
 ### Quick Filter
 The app has an input field near the top of the page that allows quick filtering on any content in the Tweets displayed. As the user types the Tweets will
