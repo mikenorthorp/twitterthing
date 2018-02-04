@@ -16,6 +16,11 @@
 			    </div>
 			  </div>
 			</div>
+			<div class="slds-form-element">
+			  <div class="slds-form-element__control">
+			    <input type="text" id="filter-tweets" class="slds-input" placeholder="Filter Tweets" />
+			  </div>
+			</div>
 			<apex:repeat value="{!tweetList}" var="tweet">
 				<c:TweetViewCmp singleTweet="{!tweet}"/> 
 			</apex:repeat> <!-- End Main Tweet Loop -->
@@ -23,8 +28,26 @@
 	</div>
 	<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
 	<script type="text/javascript">
-		// Refresh the page every minute
-	  	var refresh = setTimeout("location.reload(true);",60000);
-	  	console.log($);
+		$(function(){
+		    $('#filter-tweets').keyup(function(e){
+		    	// Get the current input in the filter
+		        var filterText = $("#filter-tweets").val();
+
+		        // Loop over each tweet to check if the filter matches
+		        // Hiding and unhiding elements as the user types depending on 
+		        // if the filter string is in any content
+		        $(".hidden-text").each(function(index, element) {
+				  if($(element).text().indexOf(filterText) < 0) {
+				  	// Hide parent
+				  	$(element).parent().hide();
+				  } else {
+				  	$(element).parent().show();
+				  }
+				});
+		    });
+		});
+
+		// Refresh the page every minute as well to get constant updates
+	  	var refresh = setTimeout("location.reload(true);console.log('refreshing');",60000);
 	</script>
 </apex:page>

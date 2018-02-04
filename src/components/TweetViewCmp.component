@@ -2,6 +2,10 @@
   <apex:attribute type="Tweet" name="singleTweet" description="Tweet passed into the controller"/>
 	  <ul class="slds-feed__list">
 	    <li class="slds-feed__item slds-box">
+	      <!-- Used for input filtering quickly, then hiding the parent element -->
+	      <div class="hidden-text" style="display:none">
+	      {!singleTweet.userName} {!singleTweet.screenName} {!singleTweet.tweetDate} {!singleTweet.tweetContent} {!singleTweet.retweetCount}
+	      </div>
 	      <article class="slds-post">
 	        <header class="slds-post__header slds-media">
 	          <div class="slds-media__figure">
