@@ -2,6 +2,8 @@
 
 # Overview
 
+![pic](https://imgur.com/zUGp7tw.png)
+
 This small application shows the latest 10 tweets from the Salesforce twitter page. 
 It includes images if applicable with tweets. Various information is displayed for each tweet including:
 * Screen Name (@name)
@@ -21,7 +23,7 @@ The top 10 tweets are refreshed every minute if a user is veiwing the page.
 The app can be customized in the code to pull from other Timelines, as well as the number of tweets increased (although rate limiting / general limits may prevent this from going too high).
 
 ### Design
-The view is styled using lightning design systems to make it look fancy. It displays them in a feed item view.
+The view is styled using lightning design systems to make it look fancy. It displays them in a feed item view. Responsive too.
 
 ### Front end choice
 Front end was built on Visualforce instead of lightning just due to personal preference, but should be able to be ported to lightning fairly easily. Although the app will currently work in both lightning and classic on the Salesforce platform.
