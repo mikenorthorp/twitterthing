@@ -12,4 +12,7 @@ public interface TwitterAPIInterface {
     String getResponseBody(); 
     HTTPResponse getFullResponse();
     Integer getResponseCode();
+
+    // Method to get the access token
+    String getBearerAccessToken();
 }

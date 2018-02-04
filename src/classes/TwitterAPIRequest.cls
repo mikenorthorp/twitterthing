@@ -19,8 +19,15 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
     public TwitterAPIRequest() {
         // Set the consumer secret and key from custom settings
         twitterOauth__c myAuth = twitterOauth__c.getInstance();
-        consumerKey = myAuth.ConsumerKey__c;
-        consumerSecret = myAuth.ConsumerSecret__c;
+
+        if(Test.isRunningTest()) {
+            consumerKey = 'testKey';
+            consumerSecret = 'testSecret';
+        } else {
+            consumerKey = myAuth.ConsumerKey__c;
+            consumerSecret = myAuth.ConsumerSecret__c;
+        }
+       
 
         // Set up authorization header and request
         req = new HttpRequest();
@@ -38,8 +45,10 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
     public String sendRequest(String resourceUrl, Map<String,String> params, String requestMethod, String payload) {
         fullRequestEndpoint = resourceUrl;
         // Add all the paramaters onto the endpoint
-        for(String paramKey : params.keySet()) {
-            fullRequestEndpoint += paramKey + '=' + params.get(paramKey) + '&';
+        if(params != null) {
+            for(String paramKey : params.keySet()) {
+                fullRequestEndpoint += paramKey + '=' + params.get(paramKey) + '&';
+            }
         }
 
         // Trim the & off of the URL if param's were added on
@@ -86,7 +95,7 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
     /* Based on source https://salesforce.stackexchange.com/questions/29359/unable-to-authenticate-to-twitter 
     /* stack overflow post helped guide me in the right direction after trying more difficult oauth 1.0 calculations
     /* as well as official docs https://developer.twitter.com/en/docs/basics/authentication/api-reference/token */
-    private String getBearerAccessToken() {
+    public String getBearerAccessToken() {
         // Encode the consumer key and secret
         twitterOauth__c myAuth = twitterOauth__c.getInstance();
 

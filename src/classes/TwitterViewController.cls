@@ -23,6 +23,11 @@ public class TwitterViewController{
     private String tweet_mode = 'extended';
 
     public TwitterViewController() {
+    	// Set mock if test is running for initial oauth
+        if(Test.isRunningTest()) {
+            Test.setMock(HttpCalloutMock.class, new OauthTokenMock());
+        }
+
     	// Init the API Request and paramaters
     	request = new TwitterAPIRequest();
     	apiParams = new Map<String, String>();
@@ -34,9 +39,12 @@ public class TwitterViewController{
     	apiParams.put('screen_name', screen_name);
     	apiParams.put('tweet_mode', tweet_mode);
 
+    	// Set mock for next timeline http request
+    	if(Test.isRunningTest()) {
+            Test.setMock(HttpCalloutMock.class, new TwitterTimelineMock());
+        }
     	// Send the request out with the proper parameters, this querys the Twitter user Timeline to get the last 10 tweets
     	apiResponse = request.sendRequest(resourceUrl, apiParams, requestMethod, null);
-    	System.debug(apiResponse);
 
     	// Make sure response is sucessful and set up the list of tweets with the parser
     	if(apiResponse != null && request.getResponseCode() == 200) {
@@ -48,7 +56,6 @@ public class TwitterViewController{
 
 	    	// Set the list of tweets by parsing the response from the Timeline request
 	    	tweetList = parseJson(apiResponse);
-	    	System.debug(tweetList);
     	} else {
     		// Set error if there was an issue with the response code
     		// Show the error style so it shows the element on the page
