@@ -1,5 +1,11 @@
+/*------------------------------------------------------------
+Author:        Mike Northorp
+Description:   Simple wrapper class used for the media porition of a tweet to get a list of attached images back
+			   either animated gif or photos
+Test Class:    TwitterTests 
+------------------------------------------------------------*/
 public class TweetMedia {
-	public List<Media> media;
+	public List<Media> media {get;set;}
 
 	// Returns a list of just photo URLs depending on type defined in Media
 	public List<String> generatePhotoList() {

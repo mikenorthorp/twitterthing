@@ -1,3 +1,8 @@
+/*------------------------------------------------------------
+Author:        Mike Northorp
+Description:   Simple wrapper for the tweet user to store their profile image, screen name and user name
+Test Class:    TwitterTests
+------------------------------------------------------------*/
 public class TweetUser {
 	public String screen_name {
 		get { // Get screenName of user with @
@@ -7,6 +12,6 @@ public class TweetUser {
     	}
     	set;
 	}
-    public String name; // Username
-    public String profile_image_url_https; // Profile image url
+    public String name {get;set;} // Username
+    public String profile_image_url_https {get;set;} // Profile image url
 }

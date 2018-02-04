@@ -32,6 +32,28 @@ Front end was built on Visualforce instead of lightning just due to personal pre
 3. Ensure remote site setting is set up with https://api.twitter.com to allow callouts to their API
 4. App is viewable at https://server.com/apex/TwitterViewPage or going to the Salesforce Twitter Feed Tab
 
+# Code Structure
+
+### Classes
+* Tweet.cls - Used to store all the tweet attributes that we need to display
+* TweetMedia.cls - Stores attached media that comes with a tweet, has inner Media class for each attached photo / gif
+* TweetUser.cls - Stores the Username and Screen Name, as well as profile image url
+
+* TwitterAPIInterface.cls - Basic interface that could be used to build out different kinds of TwitterAPIRequests
+* TwitterAPIRequest.cls - Main request class that authenticates and is able to send a request to the User Timeline Twitter endpoint
+
+* TwitterViewController.cls - Main controller that handles intialization on page load, sends out the request to the Twitter Timeline API and handles errors received (by displaying the error message)
+
+### Tests
+* TwitterTests.cls - Main tests for all classes, utilizes mock classes created for HTTP responses
+* TwitterTimelineMock.cls - Tests the main Twitter Timeline request
+* APIFailureMock.cls - Used for testing failstates on requests (non 200 response)
+* OauthTokenMock.cls - Used to test the initial oauth 2.0 POST request
+
+### Page Structure
+* TwitterViewPage.page - Styled with LDS in a simple feed layout, has code to filter on Tweets and automatically refresh each minute
+* TwitterViewCmp.cmp - Split out the Tweet and its styles into its own component for better modularity and potential reuse.
+
 # Testing
 * Apex Unit Tests for coverage of Server Side code
 * Mock HTTP Responses to test various requests and handling of responses, 

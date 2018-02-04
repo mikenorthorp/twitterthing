@@ -1,8 +1,7 @@
 /*------------------------------------------------------------
 Author:        Mike Northorp
 Description:   This is the main controller for the TwitterViewPage
-Inputs:        
-Test Class:   
+Test Class:    TwitterTests
 ------------------------------------------------------------*/
 public class TwitterViewController{
 	// List of tweets which should be returned from API

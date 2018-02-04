@@ -1,8 +1,7 @@
 /*------------------------------------------------------------
 Author:        Mike Northorp
 Description:   This class is used for authenticating and sending a request to the Twitter API. Returns JSON and response information
-Inputs:        
-Test Class:   
+Test Class:    TwitterTests
 ------------------------------------------------------------*/
 public class TwitterAPIRequest implements TwitterAPIInterface {
     // Taken from twitter API and stored in custom setting
@@ -55,8 +54,6 @@ public class TwitterAPIRequest implements TwitterAPIInterface {
         if(params != null) {
             fullRequestEndpoint = fullRequestEndpoint.substring(0, fullRequestEndpoint.length()-1);
         }
-
-        System.debug(fullRequestEndpoint);
 
         // Set the endpoint with the fully build URL
         req.setEndpoint(fullRequestEndpoint);

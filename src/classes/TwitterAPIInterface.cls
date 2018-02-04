@@ -2,7 +2,6 @@
 Author:        Mike Northorp
 Description:   This is used as a general authentication / request interface to 
                build out Twitter API requests for Tweets
-Test Class:    
 ------------------------------------------------------------*/
 public interface TwitterAPIInterface {
     // Sends a request and takes in resourceUrl, params, requestMethod and payload(optional)
